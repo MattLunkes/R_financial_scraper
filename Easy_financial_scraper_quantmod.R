@@ -9,9 +9,9 @@
 
 # Step 1: Choose Companies
 # Step 2: Get Financials
-# Step 3: Match Names and remove Nulls
-# Step 4: Prepare csv Names  
-# Step 5: Iterate Through & Export
+# Step 3: Match Names and Remove Nulls
+# Step 4: Create Data-Frames
+# Step 5: Iterate Through & Export csv Versions
 
 
 # Set-up  ############################################# ####
@@ -56,7 +56,7 @@ getFin_HANDLED <- function (symb) {
 fin.f <- lapply(fin, getFin_HANDLED) 
 
 
-# Step 3: Match Names and remove Nulls ################ ####
+# Step 3: Match Names and Remove Nulls ################ ####
 ############################################################
 
 # For some reason, auto.assign drops the top-level names (Company names) in the fin.f list
@@ -102,26 +102,26 @@ BS_list <- lapply(BS_list, rev)
 
 # Repeat these steps for the Cash Flow Statement
 CF_list <- lapply(names(fin.f), function (x) assign(paste(x, "CF", sep = "_"), as.data.frame(fin.f[[x]][[3]][[2]]) ))
-names(CF_list) <- csv_n
+names(CF_list) <- names(fin.f)
 CF_list <- lapply(CF_list, rev)
 
 
-# Step 5: Iterate Through & Export  ################### ####
+# Step 5: Iterate Through & Export csv Versions  ###### ####
 ############################################################
 
 # First, create an Exports folder and set wd
 dir.create("Exports")
 setwd(paste(wd,"/Exports", sep=""))
 
-
-
+# Use the lists of data frames you made in Step 4 to create/export csv versions
 lapply(1:length(IS_list), function(i) write.csv(IS_list[[i]],file = paste0(paste(names(IS_list[i]),"IS", sep ="_"), ".csv")))
 lapply(1:length(BS_list), function(i) write.csv(BS_list[[i]],file = paste0(paste(names(BS_list[i]),"BS", sep ="_"), ".csv")))
 lapply(1:length(CF_list), function(i) write.csv(CF_list[[i]],file = paste0(paste(names(IS_list[i]),"CF", sep ="_"), ".csv")))
-
 
 # Reset working directory
 setwd(wd)
 
 
-# End
+############################################################
+###                          End                         ###
+############################################################
