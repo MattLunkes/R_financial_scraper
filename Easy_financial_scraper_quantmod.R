@@ -27,7 +27,7 @@ wd <- getwd()
 
 # It might ask you to select a CRAN mirror when installing packages.
 # If so, remove the belove '##' and run code, and then rerun the install.packages("quantmod") command
-## chooseCRANmirror(0)  #<-- Choose '45' for USA (IA)
+## chooseCRANmirror(0)  #<-- Choose '49' for USA (IA)
 
 # Load the library
 library(quantmod)
