@@ -38,7 +38,7 @@ library(quantmod)
 ############################################################
 
 # Create a vector of companies whose financials you want (via their stock symbol)
-fin <- c('GOOGL','AAPL','AMZN','EBAY','CRM','FB','MSFT','TWTR')
+fin <- c('GOOGL','AAPL','AMZN','EBAY','CRM','FB','LNKD','ALBIY')
 
 # ^-- check spellings of symbols above; the vector will load, but it will cause errors in everything else below
 
@@ -114,9 +114,9 @@ dir.create("Exports")
 setwd(paste(wd,"/Exports", sep=""))
 
 # Use the lists of data frames you made in Step 4 to create/export csv versions
-lapply(1:length(IS_list), function(i) write.csv(IS_list[[i]],file = paste0(paste(names(IS_list[i]),"IS", sep ="_"), ".csv")))
-lapply(1:length(BS_list), function(i) write.csv(BS_list[[i]],file = paste0(paste(names(BS_list[i]),"BS", sep ="_"), ".csv")))
-lapply(1:length(CF_list), function(i) write.csv(CF_list[[i]],file = paste0(paste(names(IS_list[i]),"CF", sep ="_"), ".csv")))
+lapply(1:length(IS_list), function(x) write.csv(IS_list[[i]],file = paste0(paste(names(IS_list[x]),"IS", sep ="_"), ".csv")))
+lapply(1:length(BS_list), function(x) write.csv(BS_list[[i]],file = paste0(paste(names(BS_list[x]),"BS", sep ="_"), ".csv")))
+lapply(1:length(CF_list), function(x) write.csv(CF_list[[i]],file = paste0(paste(names(IS_list[x]),"CF", sep ="_"), ".csv")))
 
 # Reset working directory
 setwd(wd)
